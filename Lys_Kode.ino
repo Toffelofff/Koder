@@ -29,8 +29,6 @@ void setup() {
   pinMode(buttonPin, INPUT_PULLUP);
   pinMode(buttonPin2, INPUT_PULLUP);
   pinMode(Sensor, INPUT);
-
-  Serial.begin(9600);
   
   attachInterrupt(digitalPinToInterrupt(buttonPin), ModeChanger, FALLING);
   attachInterrupt(digitalPinToInterrupt(buttonPin2), PowerButton, FALLING);
@@ -54,7 +52,6 @@ void loop() {
   
   if (Time - Last_Time > 500){
     SensoReading=analogRead(Sensor);
-    Serial.println(SensoReading);
     Last_Time=Time;
   }
 
@@ -133,8 +130,7 @@ void ModeChanger(){
   
   if (Time - Last_Time > 500){
     if (pushCount1==1){
-    Mode++; 
-    Serial.println(Mode);
+    Mode++;
   }
 }
 Last_Time = Time;
@@ -147,7 +143,6 @@ void PowerButton(){
   
   if (Time - Last_Time > 500){
     pushCount1++;
-    Serial.println(pushCount1);
   }
   Last_Time = Time;
 }
